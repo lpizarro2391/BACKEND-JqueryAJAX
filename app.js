@@ -1,10 +1,9 @@
 for (var i=1;i<=80;i ++){
-  $.ajax({
-    url: 'http://pokeapi.co/api/v2/pokemon-form/' + i,
-    type:'GET',
-    data:{},
-    success: function(data){
-      $('.pokemons').append('<li><img src="'+data.sprites.front_default+'"></img></li>')
-    }
-  })
+fetch('http://pokeapi.co/api/v2/pokemon-form/' + i,{
+mthodo:'GET',
+}).then(function(data){
+  return data.json()
+}).then(function(json){
+  $('.pokemons').append('<li><img src="'+json.sprites.front_default+'"></img></li>')
+})
 }
